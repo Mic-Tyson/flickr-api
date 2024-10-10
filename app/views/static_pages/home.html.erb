@@ -1,0 +1,16 @@
+<h1>Home</h1>
+
+<%= form_with url: root_path, method: :get do |form| %>
+  <%= form.label :flickr_user_id, "Enter User ID" %>
+  <%= form.text_field :flickr_user_id %>
+  <%= form.submit "Get Photos"%>
+<% end %>
+
+<% if @photos.present? %>
+  <h2>Photos from Flickr:</h2>
+  <% @photos.each do |photo| %>
+    <img src="<%= Flickr.url_n(photo) %>">
+  <% end %>
+<% else %>
+  <p>No photos found.</p>
+<% end %>
